@@ -85,14 +85,12 @@ final class MenuViewController: UIViewController {
     
     @objc
     private func didTapStart() {
-        print("Start game")
         Game.shared.session = GameSession()
         navigationController?.pushViewController(GameViewController(), animated: true)
     }
     
     @objc
     private func didTapResults() {
-        print("show Results")
         navigationController?.pushViewController(ResultsViewController(resultsService: ResultsServiceImp()), animated: true)
     }
 }

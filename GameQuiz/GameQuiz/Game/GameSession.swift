@@ -16,12 +16,21 @@ protocol GameSessionDelegate {
 class GameSession {
     
     var answeredQuestions: Int = 0
+    var questionNumber: Observable<Int> = Observable<Int>(0)
     var score: Int = 0
+    var totalQuestions: Int = 0
+    
     var money: Int {
         return score * 10_000
     }
     
-    var percent: Float = 0
+    var percent: Float {
+        return Float(answeredQuestions) / Float(totalQuestions) * 100
+    }
+    
+    var formattedPercent: String {
+        return String(format: "%.2f %%", percent)
+    }
     
     init() {}
 }

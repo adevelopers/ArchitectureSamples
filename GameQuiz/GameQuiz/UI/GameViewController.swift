@@ -31,6 +31,15 @@ final class GameViewController: UIViewController {
         return tableView
     }()
     
+    private lazy var statusLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Вопрос №1 Пройдено 0 %"
+        label.textAlignment = .center
+        return label
+    }()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -52,21 +61,33 @@ final class GameViewController: UIViewController {
         Game.shared.controllerDelegate = self
         setupConstraints()
         nextTurn()
+        
+        guard let session = Game.shared.session else { return }
+        session.questionNumber.subscribe { value in
+            self.statusLabel.text = "Вопрос №\(value + 1) Пройдено: \(session.formattedPercent) "
+        }
     }
     
     private func setupUI() {
         view.backgroundColor = .white
+        view.addSubview(statusLabel)
         view.addSubview(questionLabel)
         view.addSubview(answersView)
     }
     
     private func setupConstraints() {
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         answersView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
+            statusLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            statusLabel.heightAnchor.constraint(equalToConstant: 30),
+            statusLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
+            statusLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
             questionLabel.widthAnchor.constraint(equalToConstant: 300),
             questionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            questionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            questionLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 30),
             questionLabel.heightAnchor.constraint(equalToConstant: 200),
             answersView.topAnchor.constraint(equalTo: questionLabel.bottomAnchor),
             answersView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -116,10 +137,4 @@ extension GameViewController: GameControllerDelegate {
         navigationController?.pushViewController(ResultsViewController(resultsService: ResultsServiceImp()), animated: true)
     }
 
-}
-
-protocol GameControllerDelegate {
-    func didStart()
-    func nextTurn()
-    func didEnd()
 }

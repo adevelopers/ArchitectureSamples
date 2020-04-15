@@ -9,12 +9,17 @@
 import Foundation
 
 protocol GameLogic {
-    
     func start()
     func nextQuestion()
     func end()
-    
 }
+
+protocol GameControllerDelegate {
+    func didStart()
+    func nextTurn()
+    func didEnd()
+}
+
 
 final class Game {
     static let shared = Game()
@@ -26,13 +31,12 @@ final class Game {
     
     private var questions: [Question] = []
     private var currentQuestion: Question?
-    
-
 }
 
 extension Game: GameLogic {
     func start() {
         questions = DataSource.items.shuffled()
+        session?.totalQuestions = questions.count
         
         nextQuestion()
     }
@@ -66,19 +70,18 @@ extension Game: GameLogic {
         guard
             let currentQuestion = currentQuestion,
             let session = session
-        else {
-            return
+            else {
+                return
         }
         
         let answer = currentQuestion.answersVariants[index]
         
-        
         if answer.id == currentQuestion.correctAnswerId {
-            print("Ответ правильный")
+            print("✅ Ответ правильный")
             session.answeredQuestions += 1
             session.score += 100
             nextQuestion()
-            
+            session.questionNumber.value += 1
         } else {
             end()
         }
@@ -89,14 +92,15 @@ extension Game: GameLogic {
             return
         }
         
-        session.percent = Float(session.answeredQuestions) / Float(DataSource.items.count) * 100
+        let dumpString = "Игра окончена\nВопросов: \(questions.count)\n"
+                    + "Дано ответов: \(session.answeredQuestions)\n"
+                    + "Получено денег: \(session.money) ₽\n"
+                    + "Процент правильных ответов: \(session.percent)%"
         
-        print("Игра окончена\nВопросов: \(questions.count)\nдано ответов: \(session.answeredQuestions)\nПолучено денег: \(session.money) ₽\nПроцент правильных ответов: \(session.percent)%")
+        print(dumpString)
         resultsService.add(result: GameResult(name: "игрок", score: session.score))
         controllerDelegate?.didEnd()
         self.session = nil
     }
-    
-    
+        
 }
-
