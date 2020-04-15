@@ -20,6 +20,7 @@
 		FA54A1BA244702AB002EEB9C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1B9244702AB002EEB9C /* GameViewController.swift */; };
 		FA54A1BC244702C3002EEB9C /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1BB244702C3002EEB9C /* ResultsViewController.swift */; };
 		FA54A1BE24471DFF002EEB9C /* GameResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1BD24471DFF002EEB9C /* GameResults.swift */; };
+		FA54A1C12447218B002EEB9C /* ResultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1C02447218B002EEB9C /* ResultsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		FA54A1B9244702AB002EEB9C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		FA54A1BB244702C3002EEB9C /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		FA54A1BD24471DFF002EEB9C /* GameResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResults.swift; sourceTree = "<group>"; };
+		FA54A1C02447218B002EEB9C /* ResultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 		FA54A1942446F326002EEB9C /* GameQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				FA54A1BF24472175002EEB9C /* Services */,
 				FA54A1952446F326002EEB9C /* AppDelegate.swift */,
 				FA54A1B62447021C002EEB9C /* UI */,
 				FA54A1AD2446F52E002EEB9C /* Models */,
@@ -118,6 +121,14 @@
 				FA54A1BB244702C3002EEB9C /* ResultsViewController.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		FA54A1BF24472175002EEB9C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FA54A1C02447218B002EEB9C /* ResultsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA54A1B42446F8F7002EEB9C /* DataSource.swift in Sources */,
+				FA54A1C12447218B002EEB9C /* ResultsService.swift in Sources */,
 				FA54A19C2446F326002EEB9C /* GameScene.swift in Sources */,
 				FA54A1AF2446F557002EEB9C /* Question.swift in Sources */,
 				FA54A1B824470231002EEB9C /* MenuViewController.swift in Sources */,

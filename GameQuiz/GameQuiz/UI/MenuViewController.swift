@@ -15,7 +15,7 @@ final class MenuViewController: UIViewController {
     private lazy var startButton: UIButton = {
         let button = UIButton(type: .system)
         button.frame = CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: 50))
-        button.setTitle("Старт", for: .normal)
+        button.setTitle("Играть", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         button.layer.cornerRadius = 25
@@ -86,10 +86,12 @@ final class MenuViewController: UIViewController {
     @objc
     private func didTapStart() {
         print("Start game")
+        navigationController?.pushViewController(GameViewController(), animated: true)
     }
     
     @objc
     private func didTapResults() {
         print("show Results")
+        navigationController?.pushViewController(ResultsViewController(resultsService: ResultsServiceImp()), animated: true)
     }
 }

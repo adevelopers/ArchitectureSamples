@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+
+struct GameResults: Codable {
+    let results: [GameResult]
+}
+
+struct GameResult: Codable {
+    let name: String
+    let score: Int
+}

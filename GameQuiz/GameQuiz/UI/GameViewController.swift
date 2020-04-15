@@ -35,6 +35,8 @@ final class GameViewController: UIViewController {
     
     private var currentQuestion: Question?
     
+    private var resultsService: ResultsService = ResultsServiceImp()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
 
@@ -79,10 +81,20 @@ final class GameViewController: UIViewController {
     }
     
     // MARK: Game
+    private var score: Int = 0
     private func nextQuestion() {
         currentQuestion = questions.popLast()
         questionLabel.text = currentQuestion?.text
         answersView.reloadData()
+        if currentQuestion == nil {
+            endGame()
+        }
+    }
+    
+    private func endGame() {
+        resultsService.add(result: GameResult(name: "Игрок", score: score))
+        navigationController?.popToRootViewController(animated: true)
+        navigationController?.pushViewController(ResultsViewController(resultsService: ResultsServiceImp()), animated: true)
     }
 }
 
@@ -123,11 +135,11 @@ extension GameViewController: UITableViewDelegate {
         
         if answer.id == currentQuestion.correctAnswerId {
             print("Ответ правильный")
+            score += 100
             nextQuestion()
         } else {
             print("Ответ НЕправильный\nИгра окончена")
-            navigationController?.popToRootViewController(animated: true)
-            navigationController?.pushViewController(ResultsViewController(), animated: true)
+            endGame()
         }
     }
 }
