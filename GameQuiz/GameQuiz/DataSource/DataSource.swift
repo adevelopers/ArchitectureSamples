@@ -51,7 +51,19 @@ final class DataSource {
                .init(id: "3", text: "Зигмунд Фрейд" ),
                .init(id: "4", text: "Карл Густав Юнг" ),
             ],
+            correctAnswerId: "3"),
+            Question(text: "О3 в химии - это...",
+            answersVariants: [
+               .init(id: "1", text: "Кислород" ),
+               .init(id: "2", text: "Водород" ),
+               .init(id: "3", text: "Озон" ),
+               .init(id: "4", text: "Триозон" ),
+            ],
             correctAnswerId: "3")
+        
+        
+        
+        
     ]
     
 }
