@@ -31,11 +31,6 @@ final class GameViewController: UIViewController {
         return tableView
     }()
     
-    private var questions: [Question] = []
-    
-    private var currentQuestion: Question?
-    
-    private var resultsService: ResultsService = ResultsServiceImp()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -53,9 +48,10 @@ final class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        questions = DataSource.items.shuffled()
-        nextQuestion()
+        Game.shared.start()
+        Game.shared.controllerDelegate = self
         setupConstraints()
+        nextTurn()
     }
     
     private func setupUI() {
@@ -80,42 +76,17 @@ final class GameViewController: UIViewController {
         
     }
     
-    // MARK: Game
-    private var score: Int = 0
-    private func nextQuestion() {
-        currentQuestion = questions.popLast()
-        questionLabel.text = currentQuestion?.text
-        answersView.reloadData()
-        if currentQuestion == nil {
-            endGame()
-        }
-    }
-    
-    private func endGame() {
-        resultsService.add(result: GameResult(name: "Игрок", score: score))
-        navigationController?.popToRootViewController(animated: true)
-        navigationController?.pushViewController(ResultsViewController(resultsService: ResultsServiceImp()), animated: true)
-    }
 }
 
 
 extension GameViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let question = currentQuestion else {
-            return 0
-        }
-        
-        print(question.answersVariants.count)
-        return question.answersVariants.count
+        return Game.shared.getAnswersCount(with: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let question = currentQuestion else {
-            return UITableViewCell()
-        }
-        
         let cell = UITableViewCell(style: .default, reuseIdentifier: "answer")
-        cell.textLabel?.text = question.answersVariants[indexPath.row].text
+        cell.textLabel?.text = Game.shared.answerText(with: indexPath.row)
         cell.textLabel?.textColor = .black
         return cell
     }
@@ -125,21 +96,30 @@ extension GameViewController: UITableViewDataSource {
 
 extension GameViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let currentQuestion = currentQuestion else {
-            return
-        }
-        
-        let answer = currentQuestion.answersVariants[indexPath.row]
-        
-        print("Вариант ответа \(answer.text) -> \(answer.id)")
-        
-        if answer.id == currentQuestion.correctAnswerId {
-            print("Ответ правильный")
-            score += 100
-            nextQuestion()
-        } else {
-            print("Ответ НЕправильный\nИгра окончена")
-            endGame()
-        }
+        Game.shared.didSelectAnswer(with: indexPath.row)
     }
+}
+
+
+extension GameViewController: GameControllerDelegate {
+    func didStart() {
+        answersView.reloadData()
+    }
+    
+    func nextTurn() {
+        questionLabel.text = Game.shared.questionText()
+        answersView.reloadData()
+    }
+    
+    func didEnd() {
+        navigationController?.popToRootViewController(animated: true)
+        navigationController?.pushViewController(ResultsViewController(resultsService: ResultsServiceImp()), animated: true)
+    }
+
+}
+
+protocol GameControllerDelegate {
+    func didStart()
+    func nextTurn()
+    func didEnd()
 }
