@@ -19,6 +19,7 @@
 		FA54A1B824470231002EEB9C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1B724470231002EEB9C /* MenuViewController.swift */; };
 		FA54A1BA244702AB002EEB9C /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1B9244702AB002EEB9C /* GameViewController.swift */; };
 		FA54A1BC244702C3002EEB9C /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1BB244702C3002EEB9C /* ResultsViewController.swift */; };
+		FA54A1BE24471DFF002EEB9C /* GameResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1BD24471DFF002EEB9C /* GameResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		FA54A1B724470231002EEB9C /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		FA54A1B9244702AB002EEB9C /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		FA54A1BB244702C3002EEB9C /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		FA54A1BD24471DFF002EEB9C /* GameResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				FA54A1AE2446F557002EEB9C /* Question.swift */,
 				FA54A1B02446F610002EEB9C /* Answer.swift */,
+				FA54A1BD24471DFF002EEB9C /* GameResults.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				FA54A19C2446F326002EEB9C /* GameScene.swift in Sources */,
 				FA54A1AF2446F557002EEB9C /* Question.swift in Sources */,
 				FA54A1B824470231002EEB9C /* MenuViewController.swift in Sources */,
+				FA54A1BE24471DFF002EEB9C /* GameResults.swift in Sources */,
 				FA54A1BA244702AB002EEB9C /* GameViewController.swift in Sources */,
 				FA54A1BC244702C3002EEB9C /* ResultsViewController.swift in Sources */,
 				FA54A1B12446F610002EEB9C /* Answer.swift in Sources */,
