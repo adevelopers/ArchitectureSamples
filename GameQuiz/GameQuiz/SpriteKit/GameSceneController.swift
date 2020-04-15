@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameSceneController: UIViewController {
     
     override func loadView() {
         view = SKView()
