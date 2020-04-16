@@ -52,6 +52,8 @@ final class MenuViewController: UIViewController {
         return [startButton, resultsButton, settingsButton]
     }()
     
+    
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -69,6 +71,7 @@ final class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         setupConstraints()
     }
     
@@ -76,7 +79,16 @@ final class MenuViewController: UIViewController {
         menu.forEach {
             view.addSubview($0)
         }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillLayoutSubviews() {

@@ -20,6 +20,11 @@ protocol GameControllerDelegate {
     func didEnd()
 }
 
+enum Difficulty {
+    case easy
+    case medium
+    case nightmore
+}
 
 final class Game {
     static let shared = Game()
@@ -28,7 +33,7 @@ final class Game {
     var controllerDelegate: GameControllerDelegate?
     var isQuestionsShuffle: Bool = false
     var isAnswersShuffle: Bool = false
-    
+    var difficulty: Difficulty = .easy
     
     private var resultsService: ResultsService = ResultsServiceImp()
     
@@ -42,10 +47,11 @@ extension Game: GameLogic {
         print("isQuestionsShuffle", isQuestionsShuffle)
         print("isAnswersShuffle", isAnswersShuffle)
         
-        questions = isQuestionsShuffle ? DataSource.items.shuffled() : DataSource.items
+        questions = QuestionsBuilderImp().build(withDifficulty: difficulty)
         session?.totalQuestions = questions.count
         
         nextQuestion()
+        session?.questionNumber.value += 1
     }
     
     func getAnswersCount(with index: Int) -> Int {
@@ -69,7 +75,7 @@ extension Game: GameLogic {
         }
         
         if isAnswersShuffle {
-            currentQuestion?.answersVariants.shuffle()
+//            currentQuestion?.answersVariants.shuffle()
         }
         controllerDelegate?.nextTurn()
     }
@@ -89,8 +95,8 @@ extension Game: GameLogic {
             print("✅ Ответ правильный")
             session.answeredQuestions += 1
             session.score += 100
-            nextQuestion()
             session.questionNumber.value += 1
+            nextQuestion()
         } else {
             end()
         }
@@ -113,3 +119,4 @@ extension Game: GameLogic {
     }
         
 }
+

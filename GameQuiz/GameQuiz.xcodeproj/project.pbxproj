@@ -27,6 +27,8 @@
 		FA54A1CB24486D2D002EEB9C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1CA24486D2D002EEB9C /* SettingsViewController.swift */; };
 		FA54A1CE24487427002EEB9C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1CD24487427002EEB9C /* SettingsViewModel.swift */; };
 		FA54A1D0244877CF002EEB9C /* SwitcherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1CF244877CF002EEB9C /* SwitcherCell.swift */; };
+		FA54A1D22448A89A002EEB9C /* GameStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1D12448A89A002EEB9C /* GameStrategy.swift */; };
+		FA54A1D42448AD8B002EEB9C /* QuestionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1D32448AD8B002EEB9C /* QuestionsBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		FA54A1CA24486D2D002EEB9C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FA54A1CD24487427002EEB9C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		FA54A1CF244877CF002EEB9C /* SwitcherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherCell.swift; sourceTree = "<group>"; };
+		FA54A1D12448A89A002EEB9C /* GameStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStrategy.swift; sourceTree = "<group>"; };
+		FA54A1D32448AD8B002EEB9C /* QuestionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				FA54A1B32446F8F7002EEB9C /* DataSource.swift */,
+				FA54A1D12448A89A002EEB9C /* GameStrategy.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			children = (
 				FA54A1C324472937002EEB9C /* Game.swift */,
 				FA54A1C524472AC0002EEB9C /* GameSession.swift */,
+				FA54A1D32448AD8B002EEB9C /* QuestionsBuilder.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -258,6 +264,8 @@
 				FA54A1C924478D23002EEB9C /* Observable.swift in Sources */,
 				FA54A1B12446F610002EEB9C /* Answer.swift in Sources */,
 				FA54A19E2446F326002EEB9C /* GameSceneController.swift in Sources */,
+				FA54A1D22448A89A002EEB9C /* GameStrategy.swift in Sources */,
+				FA54A1D42448AD8B002EEB9C /* QuestionsBuilder.swift in Sources */,
 				FA54A1962446F326002EEB9C /* AppDelegate.swift in Sources */,
 				FA54A1D0244877CF002EEB9C /* SwitcherCell.swift in Sources */,
 				FA54A1CE24487427002EEB9C /* SettingsViewModel.swift in Sources */,
