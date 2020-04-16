@@ -24,6 +24,9 @@
 		FA54A1C424472938002EEB9C /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1C324472937002EEB9C /* Game.swift */; };
 		FA54A1C624472AC0002EEB9C /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1C524472AC0002EEB9C /* GameSession.swift */; };
 		FA54A1C924478D23002EEB9C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1C824478D23002EEB9C /* Observable.swift */; };
+		FA54A1CB24486D2D002EEB9C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1CA24486D2D002EEB9C /* SettingsViewController.swift */; };
+		FA54A1CE24487427002EEB9C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1CD24487427002EEB9C /* SettingsViewModel.swift */; };
+		FA54A1D0244877CF002EEB9C /* SwitcherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1CF244877CF002EEB9C /* SwitcherCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		FA54A1C324472937002EEB9C /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		FA54A1C524472AC0002EEB9C /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		FA54A1C824478D23002EEB9C /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		FA54A1CA24486D2D002EEB9C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FA54A1CD24487427002EEB9C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		FA54A1CF244877CF002EEB9C /* SwitcherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 		FA54A1B62447021C002EEB9C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				FA54A1CC24487413002EEB9C /* Settings */,
 				FA54A1B724470231002EEB9C /* MenuViewController.swift */,
 				FA54A1B9244702AB002EEB9C /* GameViewController.swift */,
 				FA54A1BB244702C3002EEB9C /* ResultsViewController.swift */,
@@ -154,6 +161,16 @@
 				FA54A1C824478D23002EEB9C /* Observable.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		FA54A1CC24487413002EEB9C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FA54A1CA24486D2D002EEB9C /* SettingsViewController.swift */,
+				FA54A1CD24487427002EEB9C /* SettingsViewModel.swift */,
+				FA54A1CF244877CF002EEB9C /* SwitcherCell.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,12 +252,15 @@
 				FA54A1BE24471DFF002EEB9C /* GameResults.swift in Sources */,
 				FA54A1BA244702AB002EEB9C /* GameViewController.swift in Sources */,
 				FA54A1C624472AC0002EEB9C /* GameSession.swift in Sources */,
+				FA54A1CB24486D2D002EEB9C /* SettingsViewController.swift in Sources */,
 				FA54A1C424472938002EEB9C /* Game.swift in Sources */,
 				FA54A1BC244702C3002EEB9C /* ResultsViewController.swift in Sources */,
 				FA54A1C924478D23002EEB9C /* Observable.swift in Sources */,
 				FA54A1B12446F610002EEB9C /* Answer.swift in Sources */,
 				FA54A19E2446F326002EEB9C /* GameSceneController.swift in Sources */,
 				FA54A1962446F326002EEB9C /* AppDelegate.swift in Sources */,
+				FA54A1D0244877CF002EEB9C /* SwitcherCell.swift in Sources */,
+				FA54A1CE24487427002EEB9C /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

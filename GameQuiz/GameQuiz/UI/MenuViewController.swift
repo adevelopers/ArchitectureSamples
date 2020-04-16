@@ -36,9 +36,20 @@ final class MenuViewController: UIViewController {
         return button
     }()
     
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Настройки", for: .normal)
+        button.frame = CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: 50))
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+        button.layer.cornerRadius = 25
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        button.addTarget(self, action: #selector(didTapSettings), for: .touchDown)
+        return button
+    }()
     
     private lazy var menu: [UIButton] = {
-        return [startButton, resultsButton]
+        return [startButton, resultsButton, settingsButton]
     }()
     
     init() {
@@ -79,9 +90,13 @@ final class MenuViewController: UIViewController {
             y += 70
             $0.frame.origin = CGPoint(x: x , y: y )
         }
+        
     }
     
-    private func setupConstraints() {}
+    private func setupConstraints() {
+        
+        
+    }
     
     @objc
     private func didTapStart() {
@@ -92,6 +107,31 @@ final class MenuViewController: UIViewController {
     @objc
     private func didTapResults() {
         navigationController?.pushViewController(ResultsViewController(resultsService: ResultsServiceImp()), animated: true)
+    }
+    
+    @objc
+    private func didTapSettings() {
+        let viewModel = SettingsViewModelImp()
+        
+        viewModel.isQuestionShuffle.value = Game.shared.isQuestionsShuffle
+        viewModel.isAnswersShuffle.value = Game.shared.isAnswersShuffle
+        
+        viewModel.sections.value = [
+            .game(cells: [
+                .switcher(title: "Перемешивать вопросы ?", isOn: viewModel.isQuestionShuffle),
+                .switcher(title: "Перемешивать ответы ?", isOn: viewModel.isAnswersShuffle),
+            ])
+        ]
+        
+        viewModel.isQuestionShuffle.subscribe { OK in
+            Game.shared.isQuestionsShuffle = OK
+        }
+        
+        viewModel.isAnswersShuffle.subscribe { isOK in
+            Game.shared.isAnswersShuffle = isOK
+        }
+        
+        navigationController?.pushViewController(SettingsViewController(viewModel: viewModel), animated: true)
     }
 }
 

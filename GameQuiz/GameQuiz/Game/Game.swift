@@ -26,6 +26,9 @@ final class Game {
     
     var session: GameSession?
     var controllerDelegate: GameControllerDelegate?
+    var isQuestionsShuffle: Bool = false
+    var isAnswersShuffle: Bool = false
+    
     
     private var resultsService: ResultsService = ResultsServiceImp()
     
@@ -35,7 +38,11 @@ final class Game {
 
 extension Game: GameLogic {
     func start() {
-        questions = DataSource.items.shuffled()
+        print("start")
+        print("isQuestionsShuffle", isQuestionsShuffle)
+        print("isAnswersShuffle", isAnswersShuffle)
+        
+        questions = isQuestionsShuffle ? DataSource.items.shuffled() : DataSource.items
         session?.totalQuestions = questions.count
         
         nextQuestion()
@@ -61,7 +68,9 @@ extension Game: GameLogic {
             return
         }
         
-        self.currentQuestion?.answersVariants.shuffle()
+        if isAnswersShuffle {
+            currentQuestion?.answersVariants.shuffle()
+        }
         controllerDelegate?.nextTurn()
     }
     
