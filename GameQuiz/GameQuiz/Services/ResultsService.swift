@@ -20,6 +20,7 @@ final class ResultsServiceImp: ResultsService {
     func add(result: GameResult) {
         var results = getAll()
         results.append(result)
+        results.sort(by: {$0.score > $1.score})
         let gameResults = GameResults(results: results)
         
         if let resultsData = try? JSONEncoder().encode(gameResults) {
