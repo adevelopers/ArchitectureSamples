@@ -18,7 +18,7 @@ final class ResultsViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.dataSource = self
         tableView.accessibilityLabel = "resultsView"
-        tableView.backgroundColor = UIColor.blue.withAlphaComponent(0.3)
+        tableView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         
         return tableView
     }()
@@ -42,15 +42,11 @@ final class ResultsViewController: UIViewController {
         
         loadResults()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.loadResults()
-        }
-        
         setupConstraints()
     }
     
     private func setupUI() {
-        view.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         view.addSubview(resultsView)
         
     }
@@ -60,7 +56,7 @@ final class ResultsViewController: UIViewController {
             resultsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             resultsView.leftAnchor.constraint(equalTo: view.leftAnchor),
             resultsView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            resultsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            resultsView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
