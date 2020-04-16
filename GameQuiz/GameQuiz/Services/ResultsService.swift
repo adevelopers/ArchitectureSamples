@@ -12,6 +12,7 @@ import Foundation
 protocol ResultsService {
     func add(result: GameResult)
     func getAll() -> [GameResult]
+    func reset()
 }
 
 final class ResultsServiceImp: ResultsService {
@@ -36,5 +37,11 @@ final class ResultsServiceImp: ResultsService {
         }
         
         return []
+    }
+    
+    func reset() {
+        if let resultsData = try? JSONEncoder().encode(GameResults(results: [])) {
+            UserDefaults.standard.setValue(resultsData, forKey: key)
+        }
     }
 }
