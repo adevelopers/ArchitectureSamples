@@ -1,5 +1,5 @@
 //
-//  Answer.swift
+//  Question.swift
 //  GameQuiz
 //
 //  Created by Kirill Khudiakov on 15.04.2020.
@@ -9,7 +9,9 @@
 import Foundation
 
 
-struct Answer {
-    let id: String
+struct Question: Codable {
     let text: String
+    var answersVariants: [Answer]
+    let correctAnswerId: String
 }
+
