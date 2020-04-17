@@ -14,28 +14,36 @@ protocol GameStrategy {
 }
 
 /// ничего не перемешиваем
-class EasyStrategy: GameStrategy {
+final class EasyStrategy: BaseStrategy,  GameStrategy {
     func prepareQuestions() -> [Question] {
-        return DataSource.items
+        return service.getAll()
     }
 }
 
 /// перемешиваем только вопросы
-class MediumStrategy: GameStrategy {
+final class MediumStrategy: BaseStrategy, GameStrategy {
     func prepareQuestions() -> [Question] {
-        return DataSource.items.shuffled()
+        return service.getAll().shuffled()
     }
 }
 
 /// перемешиваем вопросы и ответы
-class HardStrategy: GameStrategy {
+final class HardStrategy: BaseStrategy, GameStrategy {
     func prepareQuestions() -> [Question] {
-        return DataSource.items
+        return service.getAll()
             .shuffled()
             .map {
                 Question(text: $0.text,
                          answersVariants: $0.answersVariants.shuffled(),
                          correctAnswerId: $0.correctAnswerId)
             }
+    }
+}
+
+class BaseStrategy {
+    var service: QuestionsService
+    
+    init(service: QuestionsService) {
+        self.service = service
     }
 }

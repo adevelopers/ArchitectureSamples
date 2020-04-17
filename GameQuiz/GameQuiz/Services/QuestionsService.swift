@@ -12,9 +12,10 @@ protocol QuestionsService {
     func add(question: Question)
     func getAll() -> [Question]
     func remove(question: Question)
+    func saveAll(_ questions: [Question])
 }
 
-final class QuestionServiceImp: QuestionsService {
+final class QuestionsServiceImp: QuestionsService {
     
     private let key = "game.questions"
     
@@ -41,6 +42,10 @@ final class QuestionServiceImp: QuestionsService {
         questions.removeAll(where: { $0.text.hashValue == question.text.hashValue })
         let gameQuestions = GameQuestions(list: questions)
         save(gameQuestions)
+    }
+    
+    func saveAll(_ questions: [Question]) {
+        save(GameQuestions(list: questions))
     }
     
     private func save(_ questions: GameQuestions) {

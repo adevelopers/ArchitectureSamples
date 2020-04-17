@@ -27,7 +27,7 @@ enum Difficulty {
 }
 
 final class Game {
-    static let shared = Game()
+    static let shared = Game(ResultsServiceImp())
     
     var session: GameSession?
     var controllerDelegate: GameControllerDelegate?
@@ -35,10 +35,14 @@ final class Game {
     var isAnswersShuffle: Bool = false
     var difficulty: Difficulty = .easy
     
-    private var resultsService: ResultsService = ResultsServiceImp()
+    private let resultsService: ResultsService
     
     private var questions: [Question] = []
     private var currentQuestion: Question?
+    
+    init( _ rService: ResultsService) {
+        self.resultsService = rService
+    }
 }
 
 extension Game: GameLogic {
@@ -47,7 +51,20 @@ extension Game: GameLogic {
         print("isQuestionsShuffle", isQuestionsShuffle)
         print("isAnswersShuffle", isAnswersShuffle)
         
-        questions = QuestionsBuilderImp().build(withDifficulty: difficulty)
+        switch [isQuestionsShuffle, isAnswersShuffle] {
+        case [false, false]:
+            difficulty = .easy
+        case [true, false],
+             [false, true]:
+            difficulty = .medium
+        case [true, true]:
+            difficulty = .nightmore
+        default:
+            difficulty = .easy
+        }
+        
+        questions = QuestionsBuilderImp(questionsService: QuestionsServiceImp())
+            .build(withDifficulty: difficulty)
         session?.totalQuestions = questions.count
         
         nextQuestion()
@@ -74,9 +91,6 @@ extension Game: GameLogic {
             return
         }
         
-        if isAnswersShuffle {
-//            currentQuestion?.answersVariants.shuffle()
-        }
         controllerDelegate?.nextTurn()
     }
     
