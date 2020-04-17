@@ -31,6 +31,7 @@
 		FA54A1D42448AD8B002EEB9C /* QuestionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54A1D32448AD8B002EEB9C /* QuestionsBuilder.swift */; };
 		FA5FA73F244A07E900F795E4 /* QuestionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FA73E244A07E900F795E4 /* QuestionsService.swift */; };
 		FA5FA741244A085C00F795E4 /* GameQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FA740244A085C00F795E4 /* GameQuestions.swift */; };
+		FA5FA745244A361600F795E4 /* AddQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5FA744244A361600F795E4 /* AddQuestion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		FA54A1D32448AD8B002EEB9C /* QuestionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsBuilder.swift; sourceTree = "<group>"; };
 		FA5FA73E244A07E900F795E4 /* QuestionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsService.swift; sourceTree = "<group>"; };
 		FA5FA740244A085C00F795E4 /* GameQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameQuestions.swift; sourceTree = "<group>"; };
+		FA5FA744244A361600F795E4 /* AddQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		FA54A1B62447021C002EEB9C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				FA5FA743244A2BA100F795E4 /* AddQuestion */,
 				FA54A1CC24487413002EEB9C /* Settings */,
 				FA54A1B724470231002EEB9C /* MenuViewController.swift */,
 				FA54A1B9244702AB002EEB9C /* GameViewController.swift */,
@@ -191,6 +194,14 @@
 				FA5FA740244A085C00F795E4 /* GameQuestions.swift */,
 			);
 			path = Question;
+			sourceTree = "<group>";
+		};
+		FA5FA743244A2BA100F795E4 /* AddQuestion */ = {
+			isa = PBXGroup;
+			children = (
+				FA5FA744244A361600F795E4 /* AddQuestion.swift */,
+			);
+			path = AddQuestion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +290,7 @@
 				FA54A1C924478D23002EEB9C /* Observable.swift in Sources */,
 				FA5FA741244A085C00F795E4 /* GameQuestions.swift in Sources */,
 				FA54A1B12446F610002EEB9C /* Answer.swift in Sources */,
+				FA5FA745244A361600F795E4 /* AddQuestion.swift in Sources */,
 				FA54A19E2446F326002EEB9C /* GameSceneController.swift in Sources */,
 				FA54A1D22448A89A002EEB9C /* GameStrategy.swift in Sources */,
 				FA54A1D42448AD8B002EEB9C /* QuestionsBuilder.swift in Sources */,

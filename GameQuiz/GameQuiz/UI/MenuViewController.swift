@@ -48,8 +48,22 @@ final class MenuViewController: UIViewController {
         return button
     }()
     
+    private lazy var questionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Вопросы", for: .normal)
+        button.frame = CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: 50))
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.white.withAlphaComponent(0.2)
+        button.layer.cornerRadius = 25
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 40, weight: .bold)
+        button.addTarget(self, action: #selector(didTapQuestions), for: .touchDown)
+        return button
+    }()
+    
+    
+    
     private lazy var menu: [UIButton] = {
-        return [startButton, resultsButton, settingsButton]
+        return [startButton, resultsButton, settingsButton, questionButton]
     }()
     
     
@@ -144,6 +158,12 @@ final class MenuViewController: UIViewController {
         }
         
         navigationController?.pushViewController(SettingsViewController(viewModel: viewModel), animated: true)
+    }
+    
+    @objc
+    private func didTapQuestions() {
+        let controller = AddQuestionViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
