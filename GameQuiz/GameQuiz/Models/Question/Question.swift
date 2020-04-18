@@ -15,3 +15,16 @@ struct Question: Codable {
     let correctAnswerId: String
 }
 
+
+extension Question: Hashable {
+    
+    static func == (lhs: Question, rhs: Question) -> Bool {
+        return lhs.text.hashValue == rhs.text.hashValue
+    }
+    
+    
+    var hashValue: Int {
+        return text.hashValue
+    }
+
+}

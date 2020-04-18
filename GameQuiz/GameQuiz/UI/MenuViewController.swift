@@ -162,7 +162,7 @@ final class MenuViewController: UIViewController {
     
     @objc
     private func didTapQuestions() {
-        let controller = AddQuestionViewController()
+        let controller = QuestionViewController()
         navigationController?.pushViewController(controller, animated: true)
     }
 }

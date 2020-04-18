@@ -45,7 +45,9 @@ final class QuestionsServiceImp: QuestionsService {
     }
     
     func saveAll(_ questions: [Question]) {
-        save(GameQuestions(list: questions))
+        var all = getAll()
+        all.append(contentsOf: questions)
+        save(GameQuestions(list: Set(all).map { $0 }))
     }
     
     private func save(_ questions: GameQuestions) {
