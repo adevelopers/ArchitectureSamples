@@ -67,8 +67,7 @@ final class DataSource {
                .init(id: "3", text: "80 %" ),
                .init(id: "4", text: "85-90 %" ),
             ],
-            correctAnswerId: "1"),
-            
+            correctAnswerId: "1")            
     ]
     
 }
