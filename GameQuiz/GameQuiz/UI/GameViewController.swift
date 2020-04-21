@@ -62,7 +62,9 @@ final class GameViewController: UIViewController {
         setupConstraints()
         nextTurn()
         
+        
         guard let session = Game.shared.session else { return }
+        title = "1/\(session.totalQuestions)"
         session.questionNumber.subscribe { value in
             self.statusLabel.text = "Вопрос №\(value + 1) Пройдено: \(session.formattedPercent) "
         }
@@ -130,6 +132,9 @@ extension GameViewController: GameControllerDelegate {
     func nextTurn() {
         questionLabel.text = Game.shared.questionText()
         answersView.reloadData()
+        
+        guard let session = Game.shared.session else { return }
+        title = "\(session.questionNumber.value)/\(session.totalQuestions)"
     }
     
     func didEnd() {

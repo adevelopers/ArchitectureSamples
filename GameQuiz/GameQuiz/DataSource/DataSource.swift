@@ -52,18 +52,22 @@ final class DataSource {
                .init(id: "4", text: "Карл Густав Юнг" ),
             ],
             correctAnswerId: "3"),
-            Question(text: "О3 в химии - это...",
+            Question(text: "O3 - в химии это",
             answersVariants: [
                .init(id: "1", text: "Кислород" ),
-               .init(id: "2", text: "Водород" ),
-               .init(id: "3", text: "Озон" ),
-               .init(id: "4", text: "Триозон" ),
+               .init(id: "2", text: "Озон" ),
+               .init(id: "3", text: "Тризон" ),
+               .init(id: "4", text: "Оксиген" ),
             ],
-            correctAnswerId: "3")
-        
-        
-        
-        
+            correctAnswerId: "2"),
+            Question(text: "Человек состоит из воды на...",
+            answersVariants: [
+               .init(id: "2", text: "95 %" ),
+               .init(id: "1", text: "65-70 %" ),
+               .init(id: "3", text: "80 %" ),
+               .init(id: "4", text: "85-90 %" ),
+            ],
+            correctAnswerId: "1")            
     ]
     
 }

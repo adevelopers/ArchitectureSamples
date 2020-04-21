@@ -20,25 +20,55 @@ protocol GameControllerDelegate {
     func didEnd()
 }
 
+enum Difficulty {
+    case easy
+    case medium
+    case nightmore
+}
 
 final class Game {
-    static let shared = Game()
+    static let shared = Game(ResultsServiceImp())
     
     var session: GameSession?
     var controllerDelegate: GameControllerDelegate?
+    var isQuestionsShuffle: Bool = false
+    var isAnswersShuffle: Bool = false
+    var difficulty: Difficulty = .easy
     
-    private var resultsService: ResultsService = ResultsServiceImp()
+    private let resultsService: ResultsService
     
     private var questions: [Question] = []
     private var currentQuestion: Question?
+    
+    init( _ rService: ResultsService) {
+        self.resultsService = rService
+    }
 }
 
 extension Game: GameLogic {
     func start() {
-        questions = DataSource.items.shuffled()
+        print("start")
+        print("isQuestionsShuffle", isQuestionsShuffle)
+        print("isAnswersShuffle", isAnswersShuffle)
+        
+        switch [isQuestionsShuffle, isAnswersShuffle] {
+        case [false, false]:
+            difficulty = .easy
+        case [true, false],
+             [false, true]:
+            difficulty = .medium
+        case [true, true]:
+            difficulty = .nightmore
+        default:
+            difficulty = .easy
+        }
+        
+        questions = QuestionsBuilderImp(questionsService: QuestionsServiceImp())
+            .build(withDifficulty: difficulty)
         session?.totalQuestions = questions.count
         
         nextQuestion()
+        session?.questionNumber.value += 1
     }
     
     func getAnswersCount(with index: Int) -> Int {
@@ -61,7 +91,6 @@ extension Game: GameLogic {
             return
         }
         
-        self.currentQuestion?.answersVariants.shuffle()
         controllerDelegate?.nextTurn()
     }
     
@@ -80,8 +109,8 @@ extension Game: GameLogic {
             print("✅ Ответ правильный")
             session.answeredQuestions += 1
             session.score += 100
-            nextQuestion()
             session.questionNumber.value += 1
+            nextQuestion()
         } else {
             end()
         }
@@ -104,3 +133,4 @@ extension Game: GameLogic {
     }
         
 }
+
